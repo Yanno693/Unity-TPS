@@ -51,13 +51,13 @@ public class testPlayerMovementScript : MonoBehaviour /// Handle basic player mo
             transform.rotation = Quaternion.Lerp(
                 transform.rotation,
                 Quaternion.LookRotation(new Vector3(directionRotation.x, 0, directionRotation.y)),
-                Time.deltaTime * rotationSpeed * ( 
+                Time.deltaTime * rotationSpeed * Mathf.Max(0.3f,( 
                     Quaternion.Angle(
                          transform.rotation,
                          Quaternion.LookRotation(new Vector3(directionRotation.x, 0, directionRotation.y)
                         )
                     ) * Mathf.Deg2Rad
-                )
+                ))
             );
         }
     }
