@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class testPlayerMovementScript : MonoBehaviour /// Handle basic player mouvement
+public class testPlayerMovement2 : MonoBehaviour
 {
     protected CharacterController characterController;
     public Camera currentCamera;
-    
+
     // Start is called before the first frame update
     public float movementSpeed;
     public float rotationSpeed;
@@ -17,7 +17,7 @@ public class testPlayerMovementScript : MonoBehaviour /// Handle basic player mo
     {
         characterController = GetComponent<CharacterController>();
         movementSpeed = 5.0f;
-        rotationSpeed = 5.0f;
+        rotationSpeed = 15.0f;
 
     }
 
@@ -43,21 +43,16 @@ public class testPlayerMovementScript : MonoBehaviour /// Handle basic player mo
         float angleBetween = Vector2.SignedAngle(VEC2_FORWARD, directionForward) * Mathf.Deg2Rad;
         Vector2 directionRotation = Vec2Rotate(directionInput, angleBetween);
 
-        characterController.Move(new Vector3(directionRotation.x,0,directionRotation.y) * movementSpeed * Time.deltaTime);
+        characterController.Move(new Vector3(directionRotation.x, 0, directionRotation.y) * movementSpeed * Time.deltaTime);
 
-        if(directionRotation.magnitude > 0.1) {
+        //if (directionRotation.magnitude > 0.1)
+        {
             //transform.rotation = Quaternion.LookRotation(new Vector3(directionRotation.x,0,directionRotation.y), Vector3.up);
 
             transform.rotation = Quaternion.Lerp(
                 transform.rotation,
-                Quaternion.LookRotation(new Vector3(directionRotation.x, 0, directionRotation.y)),
-                Time.deltaTime * rotationSpeed * Mathf.Max(0.8f,( 
-                    Quaternion.Angle(
-                         transform.rotation,
-                         Quaternion.LookRotation(new Vector3(directionRotation.x, 0, directionRotation.y)
-                        )
-                    ) * Mathf.Deg2Rad
-                ))
+                Quaternion.LookRotation(new Vector3(directionForward.x, 0, directionForward.y)),
+                Time.deltaTime * rotationSpeed
             );
         }
     }
