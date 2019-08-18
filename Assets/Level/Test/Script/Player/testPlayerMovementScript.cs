@@ -2,23 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class testPlayerMovementScript : MonoBehaviour /// Handle basic player mouvement
+public class testPlayerMovementScript : MonoBehaviour /// Player movement when roaming (normal situation)
 {
     protected CharacterController characterController;
     public Camera currentCamera;
     
-    // Start is called before the first frame update
     public float movementSpeed;
     public float rotationSpeed;
-
-    private readonly Vector2 VEC2_FORWARD = new Vector2(0, 1);
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         movementSpeed = 5.0f;
         rotationSpeed = 5.0f;
-
     }
 
     public static Vector2 Vec2Rotate(Vector2 v, float rad)
@@ -29,10 +25,12 @@ public class testPlayerMovementScript : MonoBehaviour /// Handle basic player mo
         );
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Character Motion for roaming camera (no rotation of character for now)
+        float finalSpeed = movementSpeed;
+
+        if (Input.GetButton("Run"))
+            finalSpeed *= 2.0f;
 
         Vector3 forward = transform.position - currentCamera.transform.position;
         forward.y = 0;
@@ -40,10 +38,10 @@ public class testPlayerMovementScript : MonoBehaviour /// Handle basic player mo
 
         Vector2 directionInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        float angleBetween = Vector2.SignedAngle(VEC2_FORWARD, directionForward) * Mathf.Deg2Rad;
+        float angleBetween = Vector2.SignedAngle(Vector2.up, directionForward) * Mathf.Deg2Rad;
         Vector2 directionRotation = Vec2Rotate(directionInput, angleBetween);
 
-        characterController.Move(new Vector3(directionRotation.x,0,directionRotation.y) * movementSpeed * Time.deltaTime);
+        characterController.Move(new Vector3(directionRotation.x,0,directionRotation.y) * finalSpeed * Time.deltaTime);
 
         if(directionRotation.magnitude > 0.1) {
             //transform.rotation = Quaternion.LookRotation(new Vector3(directionRotation.x,0,directionRotation.y), Vector3.up);
