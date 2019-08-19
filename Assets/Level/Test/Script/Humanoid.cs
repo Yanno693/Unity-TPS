@@ -9,9 +9,9 @@ public abstract class Humanoid : MonoBehaviour
     public string group; // The group which the person belongs to (Citizen, Guard, VIP, Spy, etc ...)
     public GameObject[] inventory; // The inventory of the person, can be size 8 in maximum;
 
-    public GameObject leftHandObject; // The object held is the left hand
-    public GameObject rightHandObject; // The object held is the right hand
-    public GameObject bothHandsObject; // The object held by both hands (A long weapon for example)
+    protected GameObject leftHandObject; // The object held in the left hand
+    protected GameObject rightHandObject; // The object held in the right hand
+    protected GameObject bothHandsObject; // The object held by both hands (A long weapon for example)
 
     protected void Start()
     {
