@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2f009a6671b65e42a27cc9e60f35b73, type: 3}
-  m_Name: MoveBrain
+  m_Name: TestBrain
   m_EditorClassIdentifier: 
   normalAction: {fileID: 11400000, guid: d5698efdebb58c744b6184ecb9677fe7, type: 2}
   investigationAction: {fileID: 11400000, guid: d5698efdebb58c744b6184ecb9677fe7,

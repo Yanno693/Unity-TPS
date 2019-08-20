@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : Humanoid // Well ... It's a NPC
+public abstract class NPC : Humanoid // Well ... It's a NPC, you can create NPC classes inheriting from this class to add more attributes and methods :)
 {
     public GameObject target; // The target of the NPC, it can be a Person to kill/stop or an object to get/protect;
     public Vector3 lastKnownLocation; // The lastKnownLocation is the place the NPC will be heading to, it can be a person but it can also be a position (For example a WayPoint for a patrolling guard)
