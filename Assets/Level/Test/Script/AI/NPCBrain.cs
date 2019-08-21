@@ -10,10 +10,6 @@ public class NPCBrain : ScriptableObject // An NPC Brain manages all action an N
     public NPCAction searchAction;
     public NPCAction fightAction;
 
-    // public void StartState(NPC npc)
-    // {
-    // }
-
     public void UpdateState(NPC npc)
     {
         switch(npc.alertLevel)

@@ -6,7 +6,7 @@ public abstract class Humanoid : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public string group; // The group which the person belongs to (Citizen, Guard, VIP, Spy, etc ...)
+    public int group; // The group which the person belongs to (Citizen, Guard, VIP, Spy, etc ...)
     public Carriable[] inventory; // The inventory of the person, can be size 8 in maximum;
 
     protected Carriable leftHandObject; // The object held in the left hand

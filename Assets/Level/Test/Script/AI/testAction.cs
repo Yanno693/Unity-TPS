@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu (menuName = "NPC/Actions/testAction")]
+[CreateAssetMenu (menuName = "NPC/Actions/Test/testAction")]
 public class testAction : NPCAction // It's just a test
 {
     public override void Do(NPC npc)
