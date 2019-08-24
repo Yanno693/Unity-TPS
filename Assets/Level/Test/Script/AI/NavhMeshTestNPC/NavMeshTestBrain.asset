@@ -16,4 +16,4 @@ MonoBehaviour:
   investigationAction: {fileID: 11400000, guid: 7df202ac1ed36a44992c85a0b893cdc8,
     type: 2}
   searchAction: {fileID: 11400000, guid: 7df202ac1ed36a44992c85a0b893cdc8, type: 2}
-  fightAction: {fileID: 11400000, guid: 7df202ac1ed36a44992c85a0b893cdc8, type: 2}
+  fightAction: {fileID: 11400000, guid: e6ec06ee5349a094e8dbb833f12fe0c3, type: 2}

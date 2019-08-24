@@ -46,13 +46,16 @@ public class NavMeshTestNormalAction : NPCAction
                 if(viewCheck <= cast.fov * 0.5f) // if there is a person in the field of view
                 {
                     RaycastHit hit;
-                    if(Physics.Raycast(cast.transform.position, direction.normalized, out hit, 1000f))
+                    if(Physics.Raycast(cast.transform.position, direction.normalized, out hit, 30f))
                     {
                         if(hit.collider.gameObject == h.gameObject)
                         {
                             if(cast.enemyGroups.Contains(h.group))
                             {
                                 Debug.Log("ENEMY !!!");
+                                cast.target = h.gameObject;
+                                cast.lastKnownLocation = cast.target.transform.position;
+                                cast.alertLevel = MyEnum.AlertLevel.Fight;
                             }
                         }
                     }

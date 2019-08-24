@@ -29,9 +29,7 @@ public class NavMeshTestNPC : NPC
 
     void OnGUI()
     {
-        GUI.Label(new Rect(10,10,110,110),navMeshAgent.velocity.ToString());
-        GUI.Label(new Rect(110,10,210,110),waitTime.ToString());
-        GUI.Label(new Rect(210,10,310,110),navMeshAgent.remainingDistance.ToString());
+        GUI.Label(new Rect(10,10,110,110),lastKnownLocation.ToString());
     }
 
     /*void OnDrawGizmos()
