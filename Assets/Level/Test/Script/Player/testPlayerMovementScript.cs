@@ -6,7 +6,6 @@ public class testPlayerMovementScript : MonoBehaviour /// Player movement when r
 {
     protected CharacterController characterController;
     public Camera currentCamera;
-    
     public float movementSpeed;
     public float rotationSpeed;
 
@@ -15,6 +14,13 @@ public class testPlayerMovementScript : MonoBehaviour /// Player movement when r
         characterController = GetComponent<CharacterController>();
         movementSpeed = 5.0f;
         rotationSpeed = 5.0f;
+
+        if(!currentCamera)
+        {
+            Camera[] cameraList = FindObjectsOfType<Camera>();
+            if(cameraList.Length > 0)
+                currentCamera = cameraList[0];
+        }
     }
 
     public static Vector2 Vec2Rotate(Vector2 v, float rad)

@@ -15,6 +15,13 @@ public class testPlayerMovement2 : MonoBehaviour // Player movement when fightin
         characterController = GetComponent<CharacterController>();
         movementSpeed = 5.0f;
         rotationSpeed = 15.0f;
+
+        if(!currentCamera)
+        {
+            Camera[] cameraList = FindObjectsOfType<Camera>();
+            if(cameraList.Length > 0)
+                currentCamera = cameraList[0];
+        }
     }
 
     public static Vector2 Vec2Rotate(Vector2 v, float rad)

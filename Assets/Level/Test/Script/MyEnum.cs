@@ -8,4 +8,12 @@
      * - Search : When the NPC knows there's an enemy but no target (target lost for example)
      * - Fight : When the NPC has a identified target and knows where it is. If all target are taken care of, go back to Normal.
      */
+
+    public enum Hand { Left, Right, None};
+    /* 
+     * Hand : For Humanoids, design on of both Humanoid hands
+     * - Left : The left hand of the humanoid
+     * - Right : The right hand of the humanoid
+     * - Node : If none of the hands are choses
+     */
 }
