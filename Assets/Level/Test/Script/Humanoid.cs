@@ -43,6 +43,8 @@ public abstract class Humanoid : MonoBehaviour
                 if(!bothHandsObject && !rightHandObject && !leftHandObject)
                 {
                     carriable.carried = true;
+                    carriable.transform.parent = this.gameObject.transform;
+                    carriable.transform.localPosition = new Vector3(0f,0f,1f);
                     bothHandsObject = cast;
                 }
             } 
@@ -53,6 +55,8 @@ public abstract class Humanoid : MonoBehaviour
                     if(!leftHandObject && !bothHandsObject)
                     {
                         carriable.carried = true;
+                        carriable.transform.parent = this.gameObject.transform;
+                        carriable.transform.localPosition = new Vector3(-1f,0f,0f);
                         leftHandObject = carriable;
                     }
                 }
@@ -61,6 +65,8 @@ public abstract class Humanoid : MonoBehaviour
                     if(!rightHandObject && !bothHandsObject)
                     {
                         carriable.carried = true;
+                        carriable.transform.parent = this.gameObject.transform;
+                        carriable.transform.localPosition = new Vector3(1f,0f,0f);
                         rightHandObject = carriable;
                     }
                 }
@@ -86,5 +92,6 @@ public abstract class Humanoid : MonoBehaviour
 
     protected void Update()
     {
+
     }
 }

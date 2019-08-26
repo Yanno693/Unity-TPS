@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class Carriable : MonoBehaviour // An objet that can be held/carried, like a weapon, a phone, or a snack
 {
-    public readonly bool hideable; // Can the object being put in the inventory
-    public bool carried; // Is the object carried by someone
+    public bool hideable; // Can the object being put in the inventory
+    [HideInInspector] public bool carried; // Is the object carried by someone
     
     public abstract void Interact(Humanoid humanoid);
 

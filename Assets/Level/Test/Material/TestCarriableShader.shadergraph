@@ -4,19 +4,19 @@
             "typeInfo": {
                 "fullName": "UnityEditor.ShaderGraph.ColorShaderProperty"
             },
-            "JSONnodeData": "{\n    \"m_Name\": \"Albedo\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"2fbf2818-b765-4a7c-a425-1aaeedda7760\"\n    },\n    \"m_DefaultReferenceName\": \"Color_6CF4F071\",\n    \"m_OverrideReferenceName\": \"\",\n    \"m_Precision\": 0,\n    \"m_Value\": {\n        \"r\": 1.0,\n        \"g\": 1.0,\n        \"b\": 1.0,\n        \"a\": 1.0\n    },\n    \"m_ColorMode\": 0,\n    \"m_Hidden\": false\n}"
+            "JSONnodeData": "{\n    \"m_Name\": \"Albedo\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"2fbf2818-b765-4a7c-a425-1aaeedda7760\"\n    },\n    \"m_DefaultReferenceName\": \"Color_6CF4F071\",\n    \"m_OverrideReferenceName\": \"_Albedo\",\n    \"m_Precision\": 0,\n    \"m_Value\": {\n        \"r\": 1.0,\n        \"g\": 1.0,\n        \"b\": 1.0,\n        \"a\": 1.0\n    },\n    \"m_ColorMode\": 0,\n    \"m_Hidden\": false\n}"
         },
         {
             "typeInfo": {
                 "fullName": "UnityEditor.ShaderGraph.ColorShaderProperty"
             },
-            "JSONnodeData": "{\n    \"m_Name\": \"Outline Color\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"c93c4542-e98c-4fcd-89a8-f8e74de1b133\"\n    },\n    \"m_DefaultReferenceName\": \"Color_C8FC8798\",\n    \"m_OverrideReferenceName\": \"\",\n    \"m_Precision\": 0,\n    \"m_Value\": {\n        \"r\": 0.7830188870429993,\n        \"g\": 0.3730420172214508,\n        \"b\": 0.3730420172214508,\n        \"a\": 1.0\n    },\n    \"m_ColorMode\": 1,\n    \"m_Hidden\": false\n}"
+            "JSONnodeData": "{\n    \"m_Name\": \"Outline Color\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"c93c4542-e98c-4fcd-89a8-f8e74de1b133\"\n    },\n    \"m_DefaultReferenceName\": \"Color_C8FC8798\",\n    \"m_OverrideReferenceName\": \"_Outline_Color\",\n    \"m_Precision\": 0,\n    \"m_Value\": {\n        \"r\": 0.7830188870429993,\n        \"g\": 0.3730420172214508,\n        \"b\": 0.3730420172214508,\n        \"a\": 1.0\n    },\n    \"m_ColorMode\": 1,\n    \"m_Hidden\": false\n}"
         },
         {
             "typeInfo": {
                 "fullName": "UnityEditor.ShaderGraph.BooleanShaderProperty"
             },
-            "JSONnodeData": "{\n    \"m_Name\": \"Draw Outline\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"5f225b66-f215-4fbf-b70e-93a4d07d1456\"\n    },\n    \"m_DefaultReferenceName\": \"Boolean_A2027747\",\n    \"m_OverrideReferenceName\": \"\",\n    \"m_Precision\": 0,\n    \"m_Value\": true,\n    \"m_Hidden\": false\n}"
+            "JSONnodeData": "{\n    \"m_Name\": \"Draw Outline\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"5f225b66-f215-4fbf-b70e-93a4d07d1456\"\n    },\n    \"m_DefaultReferenceName\": \"Boolean_A2027747\",\n    \"m_OverrideReferenceName\": \"_Draw_Outline\",\n    \"m_Precision\": 0,\n    \"m_Value\": true,\n    \"m_Hidden\": false\n}"
         }
     ],
     "m_SerializableNodes": [
