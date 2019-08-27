@@ -44,6 +44,7 @@ public abstract class Humanoid : MonoBehaviour
                 {
                     carriable.carried = true;
                     carriable.transform.parent = this.gameObject.transform;
+                    carriable.GetComponent<Rigidbody>().isKinematic = true;
                     carriable.transform.localPosition = new Vector3(0f,0f,1f);
                     bothHandsObject = cast;
                 }
@@ -56,6 +57,7 @@ public abstract class Humanoid : MonoBehaviour
                     {
                         carriable.carried = true;
                         carriable.transform.parent = this.gameObject.transform;
+                        carriable.GetComponent<Rigidbody>().isKinematic = true;
                         carriable.transform.localPosition = new Vector3(-1f,0f,0f);
                         leftHandObject = carriable;
                     }
@@ -66,6 +68,7 @@ public abstract class Humanoid : MonoBehaviour
                     {
                         carriable.carried = true;
                         carriable.transform.parent = this.gameObject.transform;
+                        carriable.GetComponent<Rigidbody>().isKinematic = true;
                         carriable.transform.localPosition = new Vector3(1f,0f,0f);
                         rightHandObject = carriable;
                     }

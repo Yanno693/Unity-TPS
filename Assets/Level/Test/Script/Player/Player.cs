@@ -18,6 +18,8 @@ public class Player : Humanoid
         Carriable carriable = leftHandObject;
         carriable.carried = false;
         carriable.transform.parent = null;
+        carriable.GetComponent<Rigidbody>().isKinematic = false;
+        carriable.GetComponent<Rigidbody>().velocity = this.GetComponent<CharacterController>().velocity;
         leftHandObject = null;
     }
 
@@ -26,12 +28,19 @@ public class Player : Humanoid
         Carriable carriable = rightHandObject;
         carriable.carried = false;
         carriable.transform.parent = null;
+        carriable.GetComponent<Rigidbody>().isKinematic = false;
+        carriable.GetComponent<Rigidbody>().velocity = this.GetComponent<CharacterController>().velocity;
         rightHandObject = null;
     }
 
     private void DropBothHandsObject()
     {
-
+        BothHandsCarriable carriable = bothHandsObject;
+        carriable.carried = false;
+        carriable.transform.parent = null;
+        carriable.GetComponent<Rigidbody>().isKinematic = false;
+        carriable.GetComponent<Rigidbody>().velocity = this.GetComponent<CharacterController>().velocity;
+        bothHandsObject = null;
     }
 
     // Update is called once per frame
@@ -87,25 +96,59 @@ public class Player : Humanoid
 
         if(Input.GetButtonDown("Left Drag/Drop"))
         {
-            if(!leftHandObject && closestCarriable)
+            if(bothHandsObject)
             {
-                PickUpObject(closestCarriable,false,MyEnum.Hand.Left);
+                DropBothHandsObject();
             }
-            else if(leftHandObject)
+            else
             {
-                DropLeftHandObject();
+                if(closestCarriable is BothHandsCarriable)
+                {
+                    if(leftHandObject)
+                        DropLeftHandObject();
+                    else
+                        PickUpObject(closestCarriable);
+                } 
+                else
+                {
+                    if(!leftHandObject && closestCarriable)
+                    {
+                        PickUpObject(closestCarriable,false,MyEnum.Hand.Left);
+                    }
+                    else if(leftHandObject)
+                    {
+                        DropLeftHandObject();
+                    }
+                }
             }
         }
 
         if(Input.GetButtonDown("Right Drag/Drop"))
         {
-            if(!rightHandObject && closestCarriable)
+            if(bothHandsObject)
             {
-                PickUpObject(closestCarriable,false,MyEnum.Hand.Right);
+                DropBothHandsObject();
             }
-            else if(rightHandObject)
+            else
             {
-                DropRightHandObject();
+                if(closestCarriable is BothHandsCarriable)
+                {
+                    if(rightHandObject)
+                        DropRightHandObject();
+                    else
+                        PickUpObject(closestCarriable);
+                } 
+                else
+                {
+                    if(!rightHandObject && closestCarriable)
+                    {
+                        PickUpObject(closestCarriable,false,MyEnum.Hand.Right);
+                    }
+                    else if(rightHandObject)
+                    {
+                        DropRightHandObject();
+                    }
+                }
             }
         }
     }

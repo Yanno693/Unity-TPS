@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestCarriable : Carriable
+public class TestBigCarriable : BothHandsCarriable
 {
     override public void Interact(Humanoid humanoid)
     {
         Debug.Log("Interacted with object");
+    }
+
+    override public void SecondaryInteract(Humanoid humanoid)
+    {
+        Debug.Log("Second interacted with object");
     }
     
     void Update()
