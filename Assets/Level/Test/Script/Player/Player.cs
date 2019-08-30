@@ -85,6 +85,50 @@ public class Player : Humanoid
                 }
         }
 
+        Interactable[] interactableList = FindObjectsOfType<Interactable>();
+
+        SortedList<float, Interactable> interactableAtProximity = new SortedList<float, Interactable>();
+
+        foreach(Interactable interactable in interactableList)
+        {
+            interactable.GetComponent<Renderer>().material.SetColor("_Outline_Color", Color.black);
+            
+            if(Vector3.Distance(transform.position, interactable.transform.position) < 1.5f)
+            {
+                Vector3 forward = movementScript.currentCamera.transform.position - transform.position;
+                forward.y = 0;
+                Vector2 directionForward = new Vector2(forward.x, forward.z).normalized;
+
+                Vector3 interactableVec3 = transform.position - interactable.transform.position; // poorly named variable :(
+                interactableVec3.y = 0;
+                Vector2 interactableDirection = new Vector2(interactableVec3.x, interactableVec3.z).normalized;
+
+                float angle = Mathf.Abs(Vector2.Angle(directionForward, interactableDirection));
+
+                while(interactableAtProximity.ContainsKey(angle))
+                {
+                    angle += 0.001f;
+                }
+                interactableAtProximity.Add(angle, interactable);
+            }
+        }
+
+        Interactable closestInteractable = null;
+
+        if(interactableAtProximity.Count > 0)
+        {
+            closestInteractable = interactableAtProximity.Values[0];
+            closestInteractable.GetComponent<Renderer>().material.SetColor("_Outline_Color", Color.white);
+        }
+
+        if(Input.GetButtonDown("Interact"))
+        {
+            if(closestInteractable)
+            {
+                closestInteractable.Interact(this);
+            }
+        }
+
         Carriable[] carriableList = FindObjectsOfType<Carriable>();
 
         SortedList<float, Carriable> carriableAtProximity = new SortedList<float, Carriable>();
