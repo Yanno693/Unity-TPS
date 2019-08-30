@@ -8,7 +8,9 @@ public abstract class Weapon : Carriable, WeaponInterface // A one hand weapon
     public bool isAutomatic; // Is the weapon automatic ?
     public int clipCapacity; // The maximum capacity of the weapon clip/magazine
     public float rateOfFire; // The rate of fire of the weapon (time between everyShot)
-    private int currentClipAmmo; // The current capacityt of the weapon clip/magazine
-    private float lastFire; // The time between the last shot and now
+    [HideInInspector] public int currentClipAmmo; // The current capacityt of the weapon clip/magazine
+    [HideInInspector] public float lastFire; // The time between the last shot and now
+
+    public abstract void Reload(Humanoid humanoid);
 
 }

@@ -58,6 +58,33 @@ public class Player : Humanoid
             rightHandObject.Interact(this);
         }
 
+        if(Input.GetButtonDown("Reload"))
+        {
+            if(leftHandObject)
+                if(leftHandObject is WeaponInterface)
+                {
+                    Weapon cast = (Weapon)leftHandObject;
+                    if(cast.currentClipAmmo != cast.clipCapacity)
+                        cast.Reload(this);
+                }
+
+            if(rightHandObject)
+                if(rightHandObject is WeaponInterface)
+                {
+                    Weapon cast = (Weapon)rightHandObject;
+                    if(cast.currentClipAmmo != cast.clipCapacity)
+                        cast.Reload(this);
+                }
+
+            if(bothHandsObject)
+                if(bothHandsObject is WeaponInterface)
+                {
+                    BothHandsWeapon cast = (BothHandsWeapon)bothHandsObject;
+                    if(cast.currentClipAmmo != cast.clipCapacity)
+                        cast.Reload(this);
+                }
+        }
+
         Carriable[] carriableList = FindObjectsOfType<Carriable>();
 
         SortedList<float, Carriable> carriableAtProximity = new SortedList<float, Carriable>();
