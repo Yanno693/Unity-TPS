@@ -9,8 +9,6 @@ public class testPlayerMovementScript : MonoBehaviour /// Player movement when r
     public float movementSpeed;
     public float rotationSpeed;
 
-    private Player player;
-
     void Start()
     {
         characterController = GetComponent<CharacterController>();

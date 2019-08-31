@@ -772,6 +772,26 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1859203033}
+    - target: {fileID: 769664719224453151, guid: a252cbaf00e78ef48ba5eb71dee9115a,
+        type: 3}
+      propertyPath: m_YAxis.m_AccelTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 769664719224453151, guid: a252cbaf00e78ef48ba5eb71dee9115a,
+        type: 3}
+      propertyPath: m_XAxis.m_AccelTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 769664719224453151, guid: a252cbaf00e78ef48ba5eb71dee9115a,
+        type: 3}
+      propertyPath: m_YAxis.m_DecelTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 769664719224453151, guid: a252cbaf00e78ef48ba5eb71dee9115a,
+        type: 3}
+      propertyPath: m_XAxis.m_DecelTime
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a252cbaf00e78ef48ba5eb71dee9115a, type: 3}
 --- !u!1 &1859203027

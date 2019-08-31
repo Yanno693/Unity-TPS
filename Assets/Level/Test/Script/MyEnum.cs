@@ -16,4 +16,11 @@
      * - Right : The right hand of the humanoid
      * - Node : If none of the hands are choses
      */
+
+     public enum PlayerCameraMode { Roaming, Fight}
+     /*
+        PlayerCameraMode : Define How the camera of the player will act depending on if the player is roaming of fighting
+        - Roaming : The camera shakes a little bit (noise) and follows the player when he turn
+        - Fighting : The camera doesn't shake and stay turns only with when the Mouse/Joystick is moved
+      */
 }
