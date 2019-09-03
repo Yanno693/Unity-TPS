@@ -16,6 +16,8 @@ public class testPlayerMovement3 : MonoBehaviour
 
     public Cinemachine.CinemachineFreeLook cinemachineRoamingCamera;
 
+    private float cameraLerp;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -30,6 +32,7 @@ public class testPlayerMovement3 : MonoBehaviour
         }
 
         playerCameraMode = MyEnum.PlayerCameraMode.Roaming;
+        cameraLerp = 1f;
     }
 
     public static Vector2 Vec2Rotate(Vector2 v, float rad)
@@ -100,64 +103,78 @@ public class testPlayerMovement3 : MonoBehaviour
         );
     }
 
-    void Update()
+    private void ChangeCameraMode()
     {
-
-        
         if(playerCameraMode == MyEnum.PlayerCameraMode.Roaming)
-        {   
-            RoamingMovement();
+        {
+            playerCameraMode = MyEnum.PlayerCameraMode.Fight;
+
+            cinemachineRoamingCamera.m_XAxis.m_AccelTime = 0f;
+            cinemachineRoamingCamera.m_XAxis.m_DecelTime = 0f;
+
+            Vector3 offset = cinemachineRoamingCamera.State.RawPosition - cinemachineRoamingCamera.Follow.position;
+            offset.y = 0;
+            float value = Vector3.SignedAngle(Vector3.back, offset, Vector3.up);
+            cinemachineRoamingCamera.m_BindingMode = Cinemachine.CinemachineTransposer.BindingMode.WorldSpace;
+            cinemachineRoamingCamera.UpdateCameraState(Vector3.up, -1);
+            cinemachineRoamingCamera.m_XAxis.Value = value;
         }
         else
         {
-            FightingMovement();
+            playerCameraMode = MyEnum.PlayerCameraMode.Roaming;
+
+            cinemachineRoamingCamera.m_XAxis.m_AccelTime = 0.1f;
+            cinemachineRoamingCamera.m_XAxis.m_DecelTime = 0.1f;
+
+            cinemachineRoamingCamera.m_BindingMode = Cinemachine.CinemachineTransposer.BindingMode.SimpleFollowWithWorldUp;
+            cinemachineRoamingCamera.UpdateCameraState(Vector3.up, -1);
+            cinemachineRoamingCamera.m_XAxis.Value = 0;
         }
+
+        cinemachineRoamingCamera.PreviousStateIsValid = false;
+    }
+
+    private void UpdateCamera()
+    {
+        if(playerCameraMode == MyEnum.PlayerCameraMode.Roaming)
+        {
+            if(cameraLerp < 1f)
+            {
+                cameraLerp += Time.deltaTime * 3f;
+                cinemachineRoamingCamera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.x = Mathf.Lerp(0f,0.4f,cameraLerp);
+                cinemachineRoamingCamera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.y = Mathf.Lerp(0f,0.5f,cameraLerp);
+                cinemachineRoamingCamera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.z = Mathf.Lerp(0f,0.2f,cameraLerp);
+
+                cinemachineRoamingCamera.GetRig(2).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.x = Mathf.Lerp(0f,0.4f,cameraLerp);
+                cinemachineRoamingCamera.GetRig(2).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.y = Mathf.Lerp(0f,0.5f,cameraLerp);
+            }
+        }
+        else
+        {
+            if(cameraLerp > 0f)
+            {
+                cameraLerp -= Time.deltaTime * 3f;
+                cinemachineRoamingCamera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.x = Mathf.Lerp(0f,0.4f,cameraLerp);
+                cinemachineRoamingCamera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.y = Mathf.Lerp(0f,0.5f,cameraLerp);
+                cinemachineRoamingCamera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.z = Mathf.Lerp(0f,0.2f,cameraLerp);
+
+                cinemachineRoamingCamera.GetRig(2).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.x = Mathf.Lerp(0f,0.4f,cameraLerp);
+                cinemachineRoamingCamera.GetRig(2).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.y = Mathf.Lerp(0f,0.5f,cameraLerp);
+            }
+        }
+    }
+
+    void Update()
+    {   
+        if(playerCameraMode == MyEnum.PlayerCameraMode.Roaming)
+            RoamingMovement();
+        else
+            FightingMovement();
 
         if(Input.GetKeyDown(KeyCode.V))
-        {
-            // Code From Gregoryl - Unity Forums
-            if(playerCameraMode == MyEnum.PlayerCameraMode.Roaming)
-            {
-                playerCameraMode = MyEnum.PlayerCameraMode.Fight;
+            ChangeCameraMode();
 
-                cinemachineRoamingCamera.m_XAxis.m_AccelTime = 0f;
-                cinemachineRoamingCamera.m_XAxis.m_DecelTime = 0f;
-
-                cinemachineRoamingCamera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.x = 0f;
-                cinemachineRoamingCamera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.y = 0f;
-                cinemachineRoamingCamera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.z = 0f;
-
-                cinemachineRoamingCamera.GetRig(2).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.x = 0f;
-                cinemachineRoamingCamera.GetRig(2).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.y = 0f;
-
-                Vector3 offset = cinemachineRoamingCamera.State.RawPosition - cinemachineRoamingCamera.Follow.position;
-                offset.y = 0;
-                float value = Vector3.SignedAngle(Vector3.back, offset, Vector3.up);
-                cinemachineRoamingCamera.m_BindingMode = Cinemachine.CinemachineTransposer.BindingMode.WorldSpace;
-                cinemachineRoamingCamera.UpdateCameraState(Vector3.up, -1);
-                cinemachineRoamingCamera.m_XAxis.Value = value;
-                cinemachineRoamingCamera.PreviousStateIsValid = false;
-            }
-            else
-            {
-                playerCameraMode = MyEnum.PlayerCameraMode.Roaming;
-
-                cinemachineRoamingCamera.m_XAxis.m_AccelTime = 0.1f;
-                cinemachineRoamingCamera.m_XAxis.m_DecelTime = 0.1f;
-
-                cinemachineRoamingCamera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.x = 0.4f;
-                cinemachineRoamingCamera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.y = 0.5f;
-                cinemachineRoamingCamera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.z = 0.2f;
-
-                cinemachineRoamingCamera.GetRig(2).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.x = 0.4f;
-                cinemachineRoamingCamera.GetRig(2).GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset.y = 0.5f;
-
-                cinemachineRoamingCamera.m_BindingMode = Cinemachine.CinemachineTransposer.BindingMode.SimpleFollowWithWorldUp;
-                cinemachineRoamingCamera.UpdateCameraState(Vector3.up, -1);
-                cinemachineRoamingCamera.m_XAxis.Value = 0;
-                cinemachineRoamingCamera.PreviousStateIsValid = false;
-            }
-        }
+        UpdateCamera();
     }
 }
 
