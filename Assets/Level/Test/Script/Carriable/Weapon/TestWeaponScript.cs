@@ -33,27 +33,27 @@ public class TestWeaponScript : Weapon
             lastFire = 0f;
             currentClipAmmo--;
 
+            // Unactivating colliders to shoot through the shooter
+            foreach(Collider c in humanoid.GetComponents<Collider>())
+                c.enabled = false;
+
             if(humanoid is Player)
             {
                 Player player = (Player)humanoid;
                 Vector3 rayCastStart = player.gameObject.GetComponent<testPlayerMovementScript>().currentCamera.transform.position;
 
-                int layerMask = ~(1 << LayerMask.NameToLayer("Humanoid"));
-                //int layerMask =~ 1;
+                //int layerMask = ~(1 << LayerMask.NameToLayer("Ignore Raycast"));
 
                 RaycastHit hit;
-                if(Physics.Raycast(rayCastStart, player.gameObject.GetComponent<testPlayerMovementScript>().currentCamera.transform.forward, out hit, 100f, layerMask)) // First for camera direction
+                if(Physics.Raycast(rayCastStart, player.gameObject.GetComponent<testPlayerMovementScript>().currentCamera.transform.forward, out hit, 100f))
                 {
-                    
-                    RaycastHit hit2;
-                    Vector3 newCastDirection = (hit.point - player.transform.Find("Nose").gameObject.transform.position).normalized;
-                    if(Physics.Raycast(player.transform.Find("Nose").gameObject.transform.position, newCastDirection, out hit2, 100f))
-                    {
-                        Debug.DrawLine(player.transform.Find("Nose").gameObject.transform.position, hit2.point, Color.magenta, 0.1f);
-                        Debug.Log(hit2.collider.gameObject);
-                    }
+                    Debug.DrawLine(player.transform.Find("Nose").gameObject.transform.position, hit.point, Color.magenta, 0.1f);
+                    Debug.Log(hit.collider.gameObject);
                 }
             }
+
+            foreach(Collider c in humanoid.GetComponents<Collider>())
+                c.enabled = true;
         }
     }
 
